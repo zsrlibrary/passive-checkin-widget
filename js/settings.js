@@ -1,13 +1,13 @@
 "use strict";
 
 var RiseVision = RiseVision || {};
-RiseVision.WorldClock = {};
-RiseVision.WorldClock.Settings = {};
+RiseVision.NagiosCheckin = {};
+RiseVision.NagiosCheckin.Settings = {};
 
-RiseVision.WorldClock.Settings = function () {
+RiseVision.NagiosCheckin.Settings = function () {
 	this.settings = new RiseVision.Common.Settings();
 }
-RiseVision.WorldClock.Settings.prototype.init = function() {
+RiseVision.NagiosCheckin.Settings.prototype.init = function() {
 	var self = this;
 
 	//Populate Format dropdown.
@@ -296,7 +296,7 @@ RiseVision.WorldClock.Settings.prototype.init = function() {
 		});
 	});
 }
-RiseVision.WorldClock.Settings.prototype.getSettings = function() {
+RiseVision.NagiosCheckin.Settings.prototype.getSettings = function() {
 	var alerts = document.getElementById("settings-alert"), errorFound = false, additionalParams = null, prefs = null, params = "", settings = null, selected = 0;
 
 	$("#settings-alert").empty();
@@ -343,7 +343,7 @@ RiseVision.WorldClock.Settings.prototype.getSettings = function() {
 		gadgets.rpc.call("", "rscmd_saveSettings", null, settings);
 	}
 }
-RiseVision.WorldClock.Settings.prototype.saveAdditionalParams = function() {
+RiseVision.NagiosCheckin.Settings.prototype.saveAdditionalParams = function() {
 	var additionalParams = {}, titleFontPicker = $("#title-font").data("font-picker"), numbersFontPicker = $("#numbers-font").data("font-picker"), digitalFontPicker = $("#digital-font").data("font-picker");
 
 	//Title Font

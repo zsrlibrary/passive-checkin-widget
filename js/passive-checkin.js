@@ -1,8 +1,8 @@
 var RiseVision = RiseVision || {};
-RiseVision.WorldClock = {};
-RiseVision.WorldClock.Controller = {};
+RiseVision.NagiosCheckin = {};
+RiseVision.NagiosCheckin.Controller = {};
 
-RiseVision.WorldClock.Controller = function() {
+RiseVision.NagiosCheckin.Controller = function() {
 	this.rsW = prefs.getInt("rsW");
 	this.rsH = prefs.getInt("rsH");
 	this.useLocalTime = prefs.getBool("use-local-time");
@@ -24,7 +24,7 @@ RiseVision.WorldClock.Controller = function() {
 	this.secondHandWidth = prefs.getInt("second-hand-width");
 	this.format = prefs.getString("format");
 }
-RiseVision.WorldClock.Controller.prototype.getAdditionalParams = function(name, value) {
+RiseVision.NagiosCheckin.Controller.prototype.getAdditionalParams = function(name, value) {
 	var styleNode, rules;
 
 	if (name == "additionalParams") {
@@ -58,7 +58,7 @@ RiseVision.WorldClock.Controller.prototype.getAdditionalParams = function(name, 
 				controller.numbersColor = value["numbers-color"];
 			} else {
 				controller.digitalFont = new RiseVision.Common.Font(value["digital-font"], value["digital-font-style"], value["digital-font-url"], "digitalFont");
-				
+
 				$("#digitalClock").css("font-family", controller.digitalFont.getFontFamily());
 
 				if (value["digital-bold"]) {
@@ -86,7 +86,7 @@ RiseVision.WorldClock.Controller.prototype.getAdditionalParams = function(name, 
 	//}
 }
 
-RiseVision.WorldClock.Controller.prototype.init = function() {
+RiseVision.NagiosCheckin.Controller.prototype.init = function() {
 	var $title, canvas, $analogClock = $("#analogClock");
 
 	//Title
@@ -125,7 +125,7 @@ RiseVision.WorldClock.Controller.prototype.init = function() {
 			$("#container").prepend($title);
 		}
 	}
-	
+
 	timezoneJS.timezone.zoneFileBasePath = "https://s3.amazonaws.com/Common-Production/TimezoneJS/Olson";
 	timezoneJS.timezone.init({
 		async : false
@@ -216,7 +216,7 @@ RiseVision.WorldClock.Controller.prototype.init = function() {
 	readyEvent();
 }
 /* This function is adapted from code located at http://www.neilwallis.com/projects/html5/clock/ */
-RiseVision.WorldClock.Controller.prototype.drawAnalog = function() {
+RiseVision.NagiosCheckin.Controller.prototype.drawAnalog = function() {
 	var self = this, canvas = document.getElementById("analogClock"), c2d, now, hours, minutes, seconds;
 
 	if (canvas.getContext) {
@@ -329,7 +329,7 @@ RiseVision.WorldClock.Controller.prototype.drawAnalog = function() {
 		}, 1000);
 	}
 }
-RiseVision.WorldClock.Controller.prototype.drawDigital = function() {
+RiseVision.NagiosCheckin.Controller.prototype.drawDigital = function() {
 	var self = this, ampm = " AM", now = this.useLocalTime ? new Date() : new timezoneJS.Date(new Date(), this.timeZone), hours = now.getHours(), minutes = now.getMinutes(), seconds = now.getSeconds(), dispTime = "";
 
 	if (hours >= 12) {
@@ -370,7 +370,7 @@ RiseVision.WorldClock.Controller.prototype.drawDigital = function() {
 		self.drawDigital();
 	}, 1000);
 }
-RiseVision.WorldClock.Controller.prototype.setBodyScale = function() {
+RiseVision.NagiosCheckin.Controller.prototype.setBodyScale = function() {
 	var fontSize = parseInt($("#digitalClock").css("font-size")), width, height = this.rsH;
 
 	if (((this.placement == "left") || (this.placement == "right")) && (this.verticalAlign == "middle")) {
@@ -398,13 +398,13 @@ RiseVision.WorldClock.Controller.prototype.setBodyScale = function() {
 	//It's too big; back up one.
 	$("#digitalClock").css("font-size", --fontSize);
 }
-RiseVision.WorldClock.Controller.prototype.play = function() {
+RiseVision.NagiosCheckin.Controller.prototype.play = function() {
 	if (prefs.getString("clock-type") == "analog") {
 		this.drawAnalog();
 	} else {
 		this.drawDigital();
 	}
 }
-RiseVision.WorldClock.Controller.prototype.pause = function() {
+RiseVision.NagiosCheckin.Controller.prototype.pause = function() {
 	clearTimeout(this.timeoutID);
 }

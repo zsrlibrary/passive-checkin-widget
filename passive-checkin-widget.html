@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>World Clock</title>
+	<title>Nagios Checkin</title>
 	<style>
 	* {
 		box-sizing: border-box;
@@ -94,7 +94,7 @@
 
 	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
 	<script src="//s3.amazonaws.com/Common-Production/TimezoneJS/date.js"></script>
-	<script src="js/world-clock.min.js"></script>
+	<script src="js/passive-checkin.js"></script>
 </head>
 <body>
 	<div class="customFont titleFont">
@@ -116,20 +116,6 @@
 		return false;
 	};
 
-			//Add Analytics code.
-			var _gaq = _gaq || [];
-
-			_gaq.push(['_setAccount', 'UA-41395348-13']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
 
 			$(document).ready(function() {
 				var id = prefs.getString("id"), backgroundColor = prefs.getString("background-color");
@@ -148,7 +134,7 @@
 			function init() {
 				var id = prefs.getString("id");
 
-				controller = new RiseVision.WorldClock.Controller();
+				controller = new RiseVision.NagiosCheckin.Controller();
 
 				gadgets.rpc.register("rsparam_set_" + id, controller.getAdditionalParams);
 				gadgets.rpc.call("", "rsparam_get", null, id, "additionalParams");
