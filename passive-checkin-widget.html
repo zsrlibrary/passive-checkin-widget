@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>World Clock</title>
+	<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		background: transparent;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-o-user-select: none;
+		user-select: none;
+	}
+
+	#container {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		text-align: center;
+	}
+
+	#title.top, #title.bottom {
+		width: 100%;
+	}
+
+	/* Analog */
+	#title.analog.left {
+		float: left;
+	}
+
+	#title.analog.right.valigntop {
+		text-align: right;
+	}
+
+	#title.analog.right.valignmiddle, #title.analog.right.valignbottom {
+		position: absolute;
+		right: 0;
+	}
+
+	/* Digital */
+	#title.digital.left.valigntop {
+		position: absolute;
+	}
+
+	#title.digital.left.valignmiddle {
+		float: left;
+	}
+
+	#title.valignbottom {
+		position: absolute;
+		bottom: 0;
+	}
+
+	#title.digital.right {
+		position: absolute;
+		right: 0;
+	}
+
+	.halignleft {
+		text-align: left;
+	}
+
+	.haligncenter {
+		text-align: center;
+	}
+
+	.halignright {
+		text-align: right;
+	}
+
+	#analogClock.valign {
+		position: absolute;
+		top: 50%;
+	}
+
+	#digitalClock {
+		display: inline-block;
+	}
+
+	.customFont {
+		visibility: hidden;
+		height: 0px;
+	}
+	</style>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
+
+	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
+	<script src="//s3.amazonaws.com/Common-Production/TimezoneJS/date.js"></script>
+	<script src="js/world-clock.min.js"></script>
+</head>
+<body>
+	<div class="customFont titleFont">
+		title
+	</div>
+	<div class="customFont numbersFont">
+		numbers
+	</div>
+
+	<div id="container">
+		<div id="digitalClock"></div>
+		<canvas id="analogClock"></canvas>
+	</div>
+
+	<script type="text/javascript">
+	var prefs = new gadgets.Prefs(), controller = null;
+
+	window.oncontextmenu = function() {
+		return false;
+	};
+
+			//Add Analytics code.
+			var _gaq = _gaq || [];
+
+			_gaq.push(['_setAccount', 'UA-41395348-13']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+			$(document).ready(function() {
+				var id = prefs.getString("id"), backgroundColor = prefs.getString("background-color");
+
+				if (backgroundColor != null && backgroundColor != "") {
+					document.body.style.background = backgroundColor;
+				}
+
+				gadgets.rpc.register("rscmd_play_" + id, play);
+				gadgets.rpc.register("rscmd_pause_" + id, pause);
+				gadgets.rpc.register("rscmd_stop_" + id, stop);
+				init();
+			});
+
+			//Initialize the gadget.
+			function init() {
+				var id = prefs.getString("id");
+
+				controller = new RiseVision.WorldClock.Controller();
+
+				gadgets.rpc.register("rsparam_set_" + id, controller.getAdditionalParams);
+				gadgets.rpc.call("", "rsparam_get", null, id, "additionalParams");
+			}
+
+			function play() {
+				controller.play();
+			}
+
+			function pause() {
+				controller.pause();
+			}
+
+			function stop() {
+				controller.pause();
+			}
+
+			function readyEvent() {
+				gadgets.rpc.call('', 'rsevent_ready', null, prefs.getString("id"), true, true, true, true, false);
+			}
+			</script>
+		</body>
+		</html>

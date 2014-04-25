@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>World Clock Settings</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+
+	<style type="text/css">
+	.widget-wrapper {
+		display: none;
+	}
+	</style>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/bootstrap/bootstrap.min.css" />
+	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/bootstrap-select/bootstrap-select.min.css">
+	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/bootstrap-form-helper/bootstrap-formhelpers.min.css" />
+	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/bootstrap-color-picker/bootstrap-colorpicker.min.css" />
+	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/bootstrap-font-picker/bootstrap-fontpicker.min.css">
+	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/rise/css/rise.min.css">
+</head>
+<body>
+	<div class="widget-overlay"></div>
+	<div class="widget-wrapper container modal-content">
+		<div class="modal-header">
+			<h1 id="settings-title" data-i18n="[prepend]settings">
+				<button id="settings-close" type="button" class="close" aria-hidden="true">
+					<img src="//s3.amazonaws.com/rise-common/images/close.png" alt="Close">
+				</button>
+			</h1>
+			<div class="sticky-wrapper">
+				<div class="btn-toolbar sticky-buttons">
+					<button id="save" class="btn btn-primary" type="button">
+						<span class="button-spacer" data-i18n="save"></span>
+						<i class="fa fa-check-circle"></i>
+					</button>
+					<button id="cancel" class="btn btn-primary" type="button">
+						<span class="button-spacer" data-i18n="cancel"></span>
+						<i class="fa fa-times-circle"></i>
+					</button>
+					<button id="help" class="btn btn-primary" type="button">
+						<span class="button-spacer" data-i18n="help"></span>
+						<i class="fa fa-question-circle"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="settings-alert" class="alert alert-warning"></div>
+		<form role="form">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="checkbox">
+						<label for="use-local-time" data-toggle="popover" data-i18n="[data-content]use-local-time.tooltip;use-local-time.label"></label>
+						<input id="use-local-time" name="use-local-time" type="checkbox" value="use-local-time" checked="checked" />
+					</div>
+					<div class="time-zone form-group">
+						<label for="time-zone" data-i18n="time-zone.label"></label>
+						<select id="time-zone" name="time-zone" class="form-control">
+							<option value="Pacific/Samoa" data-i18n="time-zone.Pacific/Samoa"></option>
+							<option value="US/Hawaii" data-i18n="time-zone.US/Hawaii"></option>
+							<option value="US/Alaska" data-i18n="time-zone.US/Alaska"></option>
+							<option value="Canada/Pacific" data-i18n="time-zone.Canada/Pacific"></option>
+							<option value="Canada/Mountain" data-i18n="time-zone.Canada/Mountain"></option>
+							<option value="Canada/Central" data-i18n="time-zone.Canada/Central"></option>
+							<option value="Canada/Eastern" data-i18n="time-zone.Canada/Eastern"></option>
+							<option value="Canada/Atlantic" data-i18n="time-zone.Canada/Atlantic"></option>
+							<option value="Canada/Newfoundland" data-i18n="time-zone.Canada/Newfoundland"></option>
+							<option value="America/Argentina/Buenos_Aires" data-i18n="time-zone.America/Argentina/Buenos_Aires"></option>
+							<option value="Atlantic/South_Georgia" data-i18n="time-zone.Atlantic/South_Georgia"></option>
+							<option value="Atlantic/Cape_Verde" data-i18n="time-zone.Atlantic/Cape_Verde"></option>
+							<option value="Europe/London" data-i18n="time-zone.Europe/London"></option>
+							<option value="Europe/Amsterdam" data-i18n="time-zone.Europe/Amsterdam"></option>
+							<option value="Europe/Athens" data-i18n="time-zone.Europe/Athens"></option>
+							<option value="Europe/Moscow" data-i18n="time-zone.Europe/Moscow"></option>
+							<option value="Asia/Tehran" data-i18n="time-zone.Asia/Tehran"></option>
+							<option value="Asia/Muscat" data-i18n="time-zone.Asia/Muscat"></option>
+							<option value="Asia/Kabul" data-i18n="time-zone.Asia/Kabul"></option>
+							<option value="Asia/Karachi" data-i18n="time-zone.Asia/Karachi"></option>
+							<option value="Asia/Calcutta" data-i18n="time-zone.Asia/Calcutta"></option>
+							<option value="Asia/Kathmandu" data-i18n="time-zone.Asia/Kathmandu"></option>
+							<option value="Asia/Almaty" data-i18n="time-zone.Asia/Almaty"></option>
+							<option value="Asia/Rangoon" data-i18n="time-zone.Asia/Rangoon"></option>
+							<option value="Asia/Bangkok" data-i18n="time-zone.Asia/Bangkok"></option>
+							<option value="Asia/Hong_Kong" data-i18n="time-zone.Asia/Hong_Kong"></option>
+							<option value="Asia/Tokyo" data-i18n="time-zone.Asia/Tokyo"></option>
+							<option value="Australia/Adelaide" data-i18n="time-zone.Australia/Adelaide"></option>
+							<option value="Australia/Canberra" data-i18n="time-zone.Australia/Canberra"></option>
+							<option value="Asia/Magadan" data-i18n="time-zone.Asia/Magadan"></option>
+							<option value="Pacific/Auckland" data-i18n="time-zone.Pacific/Auckland"></option>
+							<option value="Pacific/Tongatapu" data-i18n="time-zone.Pacific/Tongatapu"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="checkbox">
+						<label for="show-title" data-toggle="popover" data-i18n="[data-content]show-title.tooltip;show-title.label"></label>
+						<input id="show-title" name="show-title" type="checkbox" value="show-title" />
+					</div>
+					<div class="title form-group">
+						<label for="title" data-i18n="title.label" class="sr-only"></label>
+						<input id="title" name="title" class="form-control" type="text" />
+					</div>
+				</div>
+			</div>
+			<div class="row title">
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="placement" data-toggle="popover" data-i18n="[data-content]placement.tooltip;placement.label"></label>
+						<select id="placement" name="placement" class="form-control">
+							<option value="top" data-i18n="placement.top"></option>
+							<option value="bottom" data-i18n="placement.bottom"></option>
+							<option value="left" data-i18n="placement.left" selected="selected"></option>
+							<option value="right" data-i18n="placement.right"></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="padding" data-toggle="popover" data-i18n="[data-content]padding.tooltip;padding.label"></label>
+						<input id="padding" name="padding" class="small form-control" type="text" value="10" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="halign form-group">
+						<label for="horizontal-align" data-i18n="horizontal-align.label"></label>
+						<select id="horizontal-align" name="horizontal-align" class="form-control">
+							<option value="left" data-i18n="horizontal-align.left"></option>
+							<option value="center" data-i18n="horizontal-align.center" selected="selected"></option>
+							<option value="right" data-i18n="horizontal-align.right"></option>
+						</select>
+					</div>
+					<div class="valign form-group">
+						<label for="vertical-align" data-i18n="vertical-align.label"></label>
+						<select id="vertical-align" name="vertical-align" class="form-control">
+							<option value="top" data-i18n="vertical-align.top"></option>
+							<option value="middle" data-i18n="vertical-align.middle" selected="selected"></option>
+							<option value="bottom" data-i18n="vertical-align.bottom"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div id="title-font" class="title">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="font-picker-font form-group"></div>
+					</div>
+					<div class="col-md-3">
+						<div class="font-picker-size form-group"></div>
+					</div>
+					<div class="col-md-3">
+						<div class="font-picker-variants form-group"></div>
+					</div>
+					<div class="col-md-3">
+						<div class="font-picker-color form-group"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="font-picker-custom-font form-group"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="font-picker-text form-group"></div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-12">
+					<label for="clock-type" data-i18n="clock-type.label"></label>
+					<div class="radio">
+						<label for="analog" data-i18n="clock-type.analog"></label>
+						<input id="analog" type="radio" name="clock-type" value="analog">
+					</div>
+					<div class="radio">
+						<label for="digital" data-i18n="clock-type.digital"></label>
+						<input id="digital" type="radio" name="clock-type" value="digital" checked="checked">
+					</div>
+				</div>
+			</div>
+			<div class="analog">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 data-i18n="analog-settings"></h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">
+						<div id="frame-color">
+							<div class="font-picker-color form-group"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="frame-width" data-i18n="frame-width"></label>
+							<input id="frame-width" name="frame-width" class="small form-control" type="text" value="10" />
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div id="face-color">
+							<div class="font-picker-color form-group"></div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div id="hand-color">
+							<div class="font-picker-color form-group"></div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="hand-width" data-i18n="hand-width"></label>
+							<input id="hand-width" name="hand-width" class="small form-control" type="text" value="5" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="hour-tick-width" data-i18n="hour-tick-width"></label>
+							<input id="hour-tick-width" name="hour-tick-width" class="small form-control" type="text" value="5" />
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="minute-tick-width" data-i18n="minute-tick-width"></label>
+							<input id="minute-tick-width" name="minute-tick-width" class="small form-control" type="text" value="2" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="checkbox">
+							<label for="show-second-hand" data-i18n="show-second-hand"></label>
+							<input id="show-second-hand" name="show-second-hand" type="checkbox" value="show-second-hand" />
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div id="second-hand-color" class="second-hand">
+									<div class="font-picker-color form-group"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="second-hand form-group">
+									<label for="second-hand-width" data-i18n="second-hand-width"></label>
+									<input id="second-hand-width" name="second-hand-width" class="small form-control" type="text" value="5" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="numbers-font">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="font-picker-font form-group"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="font-picker-size form-group"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="font-picker-variants form-group"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="font-picker-color form-group"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="font-picker-custom-font form-group"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="font-picker-text form-group"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="digital">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 data-i18n="digital-settings"></h3>
+					</div>
+				</div>
+				<div id="digital-font">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="format" data-i18n="format"></label>
+								<select id="format" name="format" class="form-control"></select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="font-picker-font form-group"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="font-picker-variants"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="font-picker-color form-group"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="font-picker-custom-font form-group" ></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="font-picker-text form-group"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-3">
+					<div id="background-color">
+						<div class="font-picker-color form-group"></div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//datejs.googlecode.com/svn/trunk/build/date.js"></script>
+	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
+
+	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap/bootstrap.min.js"></script>
+	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-form-helper/bootstrap-formhelpers.min.js"></script>
+	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-color-picker/bootstrap-colorpicker.min.js"></script>
+	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-font-picker/bootstrap-fontpicker.min.js"></script>
+	<script src="//s3.amazonaws.com/rise-common/scripts/i18next/i18next.min.js"></script>
+	<script src="//s3.amazonaws.com/rise-common/scripts/sticky/jquery.sticky.min.js"></script>
+	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
+	<script src="js/settings.min.js"></script>
+	<script>
+	var clock = null;
+
+	$(document).ready(function() {
+		clock = new RiseVision.WorldClock.Settings();
+		clock.init();
+	});
+	</script>
+</body>
+</html>
